@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="{%static 'bootstrap.css'%}">
+    <script href="{%static 'bootstrap.js'%}"></script>
+</head>
+<body>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-8 col-xl-6">
+            <div class="card rounded-3">
+              <h1 class="text-center text-info mt-5">Sign Up Form</h1>
+              <div class="card-body p-4 p-md-5">
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
+    
+                <form class="px-md-2" id = 'signUpForm' method="POST" action = "{% url 'user_register'%}">
+                  {% csrf_token %}
+                  <div class="form-outline mb-4">
+                    <input type="text" id="userName" name = "userName" class="form-control" value = "{{value.userName}}"/>
+                    <label class="form-label" for="userName">User Name</label>
+                    <div class="row">
+                      <small class="text-danger">
+                        {{errorMsg.userNameError}}
+                      </small>      
+                    </div>
+                  </div>
+                  
+                  <div class="form-outline mb-4">
+                    <input type="text" id="email" name = "email" class="form-control" value = "{{value.email}}"/>
+                    <label class="form-label" for="email">Email Adress</label>
+                    <div class="row">
+                      <small class="text-danger">
+                        {{errorMsg.emailError}}
+                        {{userExists}}
+                      </small>      
+                    </div>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="password" id="password" name = "password" class="form-control" value = "{{value.password}}"/>
+                    <label class="form-label" for="password">Password</label>
+                    <div class="row">
+                      <small class="text-danger">
+                        {{errorMsg.passwordError}}
+                      </small>      
+                    </div>
+                  </div>
+                  <div class="form-outline mb-4">
+                    <input type="password" id="confirmPassword" name = "confirmPassword" class="form-control" value = "{{value.confirmPassword}}"/>
+                    <label class="form-label" for="confirmPassword">Confirm Password</label>
+                    <div class="row">
+                      <small class="text-danger">
+                        {{errorMsg.passwordError}}
+                      </small>      
+                    </div>
+                  </div>
+    
+                  <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
+    
+                </form>
+    
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
